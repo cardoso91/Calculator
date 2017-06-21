@@ -31,6 +31,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:gravity="center"
+            android:textSize="20dp"
             android:text="Clear"
             android:textAllCaps="true" />
 
@@ -41,6 +42,7 @@
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:textSize="20dp"
             android:gravity="center"
             android:text="Del"
             android:textAllCaps="true" />
@@ -55,29 +57,23 @@
 
         <TextView
             android:id="@+id/no7"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="7" />
 
         <TextView
             android:id="@+id/no8"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="8" />
 
         <TextView
             android:id="@+id/no9"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="9" />
 
         <TextView
             android:id="@+id/division"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="/"
-            android:textAllCaps="true" />
+            style="@style/Keypad"
+            android:text="/" />
 
     </LinearLayout>
 
@@ -89,27 +85,23 @@
 
         <TextView
             android:id="@+id/no4"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="4" />
 
         <TextView
             android:id="@+id/no5"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="5" />
 
         <TextView
             android:id="@+id/no6"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="6" />
 
         <TextView
             android:id="@+id/multiplication"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="*"
-            android:textAllCaps="true" />
+            style="@style/Keypad"
+            android:text="*" />
 
     </LinearLayout>
 
@@ -121,27 +113,23 @@
 
         <TextView
             android:id="@+id/no1"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="1" />
 
         <TextView
             android:id="@+id/no2"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="2" />
 
         <TextView
             android:id="@+id/no3"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="3" />
 
         <TextView
             android:id="@+id/subtraction"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="-"
-            android:textAllCaps="true" />
+            style="@style/Keypad"
+            android:text="-" />
 
     </LinearLayout>
 
@@ -153,35 +141,23 @@
 
         <TextView
             android:id="@+id/period"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="."
-            android:textAllCaps="true" />
+            style="@style/Keypad"
+            android:text="." />
 
         <TextView
             android:id="@+id/no0"
-            style="@style/NumberKeyboard"
+            style="@style/Keypad"
             android:text="0" />
 
         <TextView
             android:id="@+id/equal"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="="
-            android:textAllCaps="true" />
+            style="@style/Keypad"
+            android:text="=" />
 
         <TextView
             android:id="@+id/addition"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="+"
-            android:textAllCaps="true" />
+            style="@style/Keypad"
+            android:text="+" />
 
     </LinearLayout>
 

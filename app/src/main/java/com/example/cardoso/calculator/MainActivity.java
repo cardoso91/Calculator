@@ -10,12 +10,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    String operation;
-    String arithmeticSign;
-    String value_one;
-    String value_two;
+    private String operation;
+    private double value_one = Double.NaN;
+    private double value_two = Double.NaN;
 
-    TextView equal;
+    private static final char ADDITION = '+';
+    private static final char SUBTRACTION = '-';
+    private static final char MULTIPLICATION = '*';
+    private static final char DIVISION = '/';
+
+    private char CURRENT_ACTION;
 
     EditText display;
     TextView clear;
@@ -31,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
     TextView no6;
     TextView multiplication;
 
+    TextView no1;
+    TextView no2;
+    TextView no3;
+    TextView subtraction;
+
+    TextView period;
+    TextView no0;
+    TextView equal;
+    TextView addition;
+
+
 
 
     @Override
@@ -45,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ClearOperation();
+                value_one = Double.NaN;
+                value_two = Double.NaN;
 
             }
         });
@@ -98,10 +115,15 @@ public class MainActivity extends AppCompatActivity {
         division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                arithmeticSign = "/";
-                value_one = operation;
-                ClearOperation();
-
+                if(!Double.isNaN(value_two)) {
+                    value_two = Double.NaN;
+                    CURRENT_ACTION = DIVISION;
+                    ClearOperation();
+                }else {
+                    TotalResult();
+                    CURRENT_ACTION = DIVISION;
+                    ClearOperation();
+                }
             }
         });
 
@@ -139,10 +161,81 @@ public class MainActivity extends AppCompatActivity {
         multiplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                arithmeticSign = "*";
-                value_one = operation;
-                ClearOperation();
+                if(!Double.isNaN(value_two)) {
+                    value_two = Double.NaN;
+                    CURRENT_ACTION = MULTIPLICATION;
+                    ClearOperation();
+                }else {
+                    TotalResult();
+                    CURRENT_ACTION = MULTIPLICATION;
+                    ClearOperation();
+                }
+            }
+        });
 
+        no1 = (TextView) findViewById(R.id.no1);
+        no1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operation = display.getText().toString();
+                operation = operation + 1;
+                display.setText(String.valueOf(operation));
+            }
+        });
+
+        no2 = (TextView) findViewById(R.id.no2);
+        no2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operation = display.getText().toString();
+                operation = operation + 2;
+                display.setText(String.valueOf(operation));
+            }
+        });
+
+        no3 = (TextView) findViewById(R.id.no3);
+        no3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operation = display.getText().toString();
+                operation = operation + 3;
+                display.setText(String.valueOf(operation));
+            }
+        });
+
+        subtraction = (TextView) findViewById(R.id.subtraction);
+        subtraction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!Double.isNaN(value_two)) {
+                    value_two = Double.NaN;
+                    CURRENT_ACTION = SUBTRACTION;
+                    ClearOperation();
+                }else {
+                    TotalResult();
+                    CURRENT_ACTION = SUBTRACTION;
+                    ClearOperation();
+                }
+            }
+        });
+
+        period = (TextView) findViewById(R.id.period);
+        period.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operation = display.getText().toString();
+                operation = operation + ".";
+                display.setText(String.valueOf(operation));
+            }
+        });
+
+        no0 = (TextView) findViewById(R.id.no0);
+        no0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operation = display.getText().toString();
+                operation = operation + 0;
+                display.setText(String.valueOf(operation));
             }
         });
 
@@ -150,14 +243,30 @@ public class MainActivity extends AppCompatActivity {
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                value_two =  operation;
-                double total = TotalResult(Double.parseDouble(value_one),Double.parseDouble(value_two),arithmeticSign);
-                String totalResult = String.valueOf(total);
-                display.setText(totalResult);
-                value_one = totalResult;
+                TotalResult();
+                display.setText(String.valueOf(value_one));
+                operation = String.valueOf(value_one);
+                //value_one = Double.NaN;
+                //CURRENT_ACTION = '0';
+
             }
         });
 
+        addition = (TextView) findViewById(R.id.addition);
+        addition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!Double.isNaN(value_two)) {
+                    value_two = Double.NaN;
+                    CURRENT_ACTION = ADDITION;
+                    ClearOperation();
+                }else {
+                    TotalResult();
+                    CURRENT_ACTION = ADDITION;
+                    ClearOperation();
+                }
+            }
+        });
 
     }
 
@@ -167,27 +276,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public double TotalResult (double value_one, double value_two, String arithmeticSign) {
-        double total = 0;
+    private void TotalResult () {
+        if(!Double.isNaN(value_one)) {
 
-        switch (arithmeticSign){
-            case "/":
-                total = value_one / value_two;
-                break;
+            if(!Double.isNaN(value_two)) {
 
-            case "*":
-                total = value_one * value_two;
-                break;
+                if(CURRENT_ACTION == ADDITION)
+                    value_one = this.value_one + value_two;
+                else if(CURRENT_ACTION == SUBTRACTION)
+                    value_one = this.value_one - value_two;
+                else if(CURRENT_ACTION == MULTIPLICATION)
+                    value_one = this.value_one * value_two;
+                else if(CURRENT_ACTION == DIVISION)
+                    value_one = this.value_one / value_two;
 
-            case "-":
-                total = value_one - value_two;
-                break;
+                display.setText(String.valueOf(value_one));
 
-            case "+":
-                total = value_one + value_two;
-                break;
+            } else {
+
+                value_two = Double.parseDouble(display.getText().toString());
+
+                if(CURRENT_ACTION == ADDITION)
+                    value_one = this.value_one + value_two;
+                else if(CURRENT_ACTION == SUBTRACTION)
+                    value_one = this.value_one - value_two;
+                else if(CURRENT_ACTION == MULTIPLICATION)
+                    value_one = this.value_one * value_two;
+                else if(CURRENT_ACTION == DIVISION)
+                    value_one = this.value_one / value_two;
+            }
         }
-        return total;
+        else {
+            try {
+                value_one = Double.parseDouble(display.getText().toString());
+            }
+            catch (Exception e){}
+        }
     }
 
 
